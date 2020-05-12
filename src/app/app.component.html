@@ -1,0 +1,163 @@
+<div class="container">
+  <div>
+    <form [formGroup]="attForm" (ngSubmit)="attsubmit()">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="sel1">Action</label>
+          <select class="form-control" id="sel1" formControlName="optionvalue">
+            <option *ngFor="let x of data">{{x.name}}</option>
+
+          </select>
+        </div>
+        <div class="multipleselect col-md-4" *ngIf="attForm['controls'].optionvalue.value != ''">
+          <div class="selectbox" (click)="checkboxs =!checkboxs">
+            <select class="form-control">
+              <option>select an option</option>
+            </select>
+            <div class="overselect"></div>
+          </div>
+          <div class="check" *ngIf="checkboxs">
+            <label for="one" class="first">
+              <input type="checkbox" formControlName="EcquipmentList" id="one" />EcquipmentList
+            </label>
+            <label for="two" class="second">
+              <input type="checkbox" formControlName="Directions" id="two" />Directions
+            </label>
+            <label for="thyee" class="third">
+              <input type="checkbox" formControlName="Charges" id="three" />Charges
+            </label>
+          </div>
+
+
+        </div>
+        <div class="col-md-3 btn addactionbutton" *ngIf="attForm['controls'].optionvalue.value != ''"><button
+            type="submit">ADD</button></div>
+
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <div>
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+
+
+        <div>
+          <ul>
+            <li class="tabs" [class.active]="val && val[xyz]?.name == value.name"
+              *ngFor="let value of showattr(); let i= index" (click)="tabclick(value ,i)">{{value.name}}</li>
+
+          </ul>
+        </div>
+        <div *ngIf="attlist && attlist.Directions == true &&val && val[1]?.isselected == true">
+        
+          <div formArrayName="Directions"
+            *ngFor="let list of myForm.get('Directions')['controls']; let i = index ">
+
+
+
+            <div [formGroupName]='0' class="row rowdata">
+              <div class="form-group" class="col-md-3">
+               ACTION <input type="text" formControlName="action">
+              </div>
+              <div class="form-group" class="col-md-3">
+                <input type="text" formControlName="DirectionName">
+              </div>
+              <div class="form-group" class="col-md-3">
+                <input type="text" formControlName="Sequence">
+              </div>
+              <div class="form-group" class="col-md-2">
+                <input type="text" formControlName="memo">
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <div *ngIf="attlist && attlist.EcquipmentList == true &&val && val[0]?.isselected == true">
+          <div class="ecquipment">
+            <button (click)='addEcquipmentlistbytton()'>Add New EcquipmentList</button>
+          </div>
+          <div class="row ecqitems">
+          <div class="col-md-3">#item</div>
+          <div class="col-md-3">#itemDescription</div>
+          <div class="col-md-3">#itemClassification</div>
+          <div class="col-md-2">#QTY</div>
+        </div>
+          <div formArrayName="ecquipmentlist"
+            *ngFor="let list of myForm.get('ecquipmentlist')['controls']; let i = index ">
+
+
+
+            <div [formGroupName]='i' class="row rowdata">
+              <div class="form-group" class="col-md-3">
+                <input type="text" formControlName="item">
+              </div>
+              <div class="form-group" class="col-md-3">
+                <input type="text" formControlName="itemDecsription">
+              </div>
+              <div class="form-group" class="col-md-3">
+                <!-- <input type="text" formControlName="itemClissification"> -->
+                <select class="form-control">
+                  <option>select an option</option>
+                </select>
+              </div>
+              <div class="form-group" class="col-md-2">
+                <input type="number" formControlName="qty">
+              </div>
+              <div class="form-group" class="col-md-1">
+                <button (click) = "delRow(i)">del</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- charges -->
+        <div *ngIf="attlist && attlist.Charges == true &&val && val[2]?.isselected == true">
+          <div class="ecquipment">
+            <button (click)='addChargesbytton()'>Add New Charges</button>
+          </div>
+          <div class="row ecqitems">
+          <div class="col-md-3">#type</div>
+          <div class="col-md-3">#QTY</div>
+          <div class="col-md-3">#UnitCost</div>
+          <div class="col-md-2">#ExtendedCost</div>
+        </div>
+          <div formArrayName="Charges"
+            *ngFor="let list of myForm.get('Charges')['controls']; let i = index ">
+
+
+
+            <div [formGroupName]='i' class="row rowdata">
+              <div class="form-group" class="col-md-3">
+                <!-- <input type="text" formControlName="type"> -->
+                <select class="form-control" formControlName="type">
+                  <option>select an option</option>
+                </select>
+              </div>
+              <div class="form-group" class="col-md-3">
+                <input type="number" formControlName="qty">
+              </div>
+              <div class="form-group" class="col-md-3">
+                <input type="text" formControlName="unitcost">
+              </div>
+              <div class="form-group" class="col-md-2">
+                <input type="text" formControlName="extendedCost">
+              </div>
+              <div class="form-group" class="col-md-1">
+                <button (click) ="delRow(i)">del</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!-- charges end -->
+
+
+
+<div><button class ="datasubmitt" type="submit" *ngIf ="val && val[xyz]?.isselected == true">save workflow details</button></div>
+        
+      </form>
+    </div>
+
+  </div>
+</div>

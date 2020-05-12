@@ -1,0 +1,57 @@
+.multipleselect{
+width: 200px;
+top: 30px;
+}
+.selectbox{
+position: relative;
+}
+.selectbox select{
+   width: 100%;
+   font-weight: bold;
+    }
+.overselect{
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+}
+
+.check{
+   display: grid;
+    border: 1px #dadada solid;
+}
+
+
+#checkboxes label:hover{
+    background-color: #1e90ff;
+}
+.addactionbutton{
+   top: 30px; 
+}
+.active{
+    background-color: red !important;
+}
+.tabs{
+    display: inline-block;
+    background-color: #2c76ba;
+    margin: 2px;
+    font-size: larger;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+}
+.ecquipment{
+    background-color: #255b95;
+}
+.ecqitems{
+    background-color: #989694;
+}
+.rowdata{
+    padding: 3px;
+    background-color: #E2E2E2;
+}
+.datasubmitt{
+    position: relative;
+    left: 80%;
+}
